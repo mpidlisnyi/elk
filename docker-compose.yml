@@ -1,7 +1,7 @@
 version: '2'
 services:
   kibana:
-    image: kibana:4
+    image: kibana:4.5
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
     ports:
@@ -9,12 +9,18 @@ services:
     links:
      - elasticsearch
   logstash:
-    image: logstash:2
+    image: logstash:2.4
     command: logstash -f /config/logstash.conf
     volumes:
      - ./logstash:/config
     ports:
      - "5999:5999"
+    links:
+     - elasticsearch
+  grafana:
+    image: grafana/grafana:2.6.0
+    ports:
+     - "3000:3000"
     links:
      - elasticsearch
   dockerbeat:
@@ -25,7 +31,7 @@ services:
     links:
      - elasticsearch
   elasticsearch:
-    image: elasticsearch:2
+    image: elasticsearch:2.4
     volumes:
      - ./elasticsearch/config:/usr/share/elasticsearch/config
      - ./elasticsearch/data:/usr/share/elasticsearch/data
