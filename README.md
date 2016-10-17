@@ -2,7 +2,7 @@
 
 It is simple demo of ELK stack with additional applications
 
-## Required command
+## Required commands
 ```
 docker-compose up -d
 ./init_dockerbeat_template.sh
@@ -10,5 +10,5 @@ docker-compose up -d
 ```
 
 ## UI
-[Kibana](http://localhost:5601/)
-[Grafana](http://localhost:3000/)
+* [Kibana](http://localhost:5601/)
+* [Grafana](http://localhost:3000/)
