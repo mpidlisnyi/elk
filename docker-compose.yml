@@ -17,6 +17,7 @@ services:
      - ./logstash:/config
     ports:
      - "5999:5999"
+     - "5999:5999/udp"
     links:
      - elasticsearch
   grafana:
