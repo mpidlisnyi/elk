@@ -1,0 +1,79 @@
+{
+    "mappings": {
+        "_default_": {
+            "_all": {
+                "enabled": true
+            },
+            "dynamic_templates": [
+                {
+                    "string_fields": {
+                        "mapping": {
+                            "index": "not_analyzed",
+                            "omit_norms": true,
+                            "type": "string"
+                        },
+                        "match": "*",
+                        "match_mapping_type": "string"
+                    }
+                }
+            ],
+            "properties": {
+                "@version": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "@timestamp" : {
+                    "format" : "dateOptionalTime",
+                    "type" : "date"
+                },
+                "host": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "message": {
+                    "index": "analyzed",
+                    "type": "string"
+                },
+                "geoip": {
+                    "dynamic": true,
+                    "path": "full",
+                    "properties": {
+                        "location": {
+                            "type": "geo_point"
+                        }
+                    },
+                    "type": "object"
+                },
+                "logsource": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "facility_label": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "facility": {
+                    "index": "not_analyzed",
+                    "type": "integer"
+                },
+                "program": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "severity_label": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "severity": {
+                    "index": "not_analyzed",
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "settings": {
+        "index.refresh_interval": "10s",
+        "number_of_shards": 4
+    },
+    "template": "logstash-*"
+}
