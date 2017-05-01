@@ -1,7 +1,7 @@
 version: '2'
 services:
   kibana:
-    image: kibana:4.5
+    image: kibana:5
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
     ports:
@@ -10,7 +10,9 @@ services:
      - elasticsearch
   logstash:
     image: logstash:2.4
-    command: logstash -f /config/logstash.conf
+    environment:
+     - LS_JAVA_OPTS=-Xms512m -Xmx512m
+    command: -f /config/logstash.conf
     volumes:
      - ./logstash:/config
     ports:
@@ -31,7 +33,11 @@ services:
     links:
      - elasticsearch
   elasticsearch:
-    image: elasticsearch:2.4
+    image: elasticsearch:5
+    environment:
+     - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+     - "9200:9200"
     volumes:
      - ./elasticsearch/config:/usr/share/elasticsearch/config
      - ./elasticsearch/data:/usr/share/elasticsearch/data
