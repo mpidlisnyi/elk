@@ -20,19 +20,6 @@ services:
      - "5999:5999/udp"
     links:
      - elasticsearch
-  grafana:
-    image: grafana/grafana:2.6.0
-    ports:
-     - "3000:3000"
-    links:
-     - elasticsearch
-  dockerbeat:
-    image: ingensi/dockerbeat:latest
-    volumes:
-     - /var/run/docker.sock:/var/run/docker.sock
-     - ./dockerbeat:/etc/dockerbeat
-    links:
-     - elasticsearch
   elasticsearch:
     image: elasticsearch:5
     environment:

@@ -1,0 +1,8 @@
+version: '2'
+services:
+  grafana:
+    image: grafana/grafana:2.6.0
+    ports:
+     - "3000:3000"
+    links:
+     - elasticsearch

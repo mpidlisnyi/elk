@@ -7,7 +7,7 @@ services:
      - /etc/logstash:/config
   elasticsearch:
     environment:
-     - ES_JAVA_OPTS=-Xms1g -Xmx1g
+     - ES_JAVA_OPTS=-Xms2g -Xmx2g
     volumes:
      - /etc/elasticsearch:/usr/share/elasticsearch/config
      - /var/elasticsearch:/usr/share/elasticsearch/data
