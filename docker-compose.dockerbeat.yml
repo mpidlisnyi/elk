@@ -2,6 +2,7 @@ version: '2'
 services:
   dockerbeat:
     image: ingensi/dockerbeat:latest
+    restart: unless-stopped
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
      - ./dockerbeat:/etc/dockerbeat
